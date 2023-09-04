@@ -17,15 +17,17 @@
       <form id="filter-form">
         <h3>Filtrér Kunstnere</h3>
       </form>
-
-      <!-- <button id="update-btn">Redigér Kunstner</button>
-      <button id="delete-btn">Slet Kunstner</button> -->
     </div>
 
     <div id="grid-container">
       <div id="artists-grid"></div>
     </div>
 
+    <div id="dialog-container">
+      <dialog class="dialog" id="createArtDialog"></dialog>
+      <dialog class="dialog" id="updateArtDialog"></dialog>
+      <dialog class="dialog" id="detailedArtDialog"></dialog>
+    </div>
     <script src="homepage-script.js" type="module"></script>
     <script src="/front-end/crud.js" type="module"></script>
   </body>

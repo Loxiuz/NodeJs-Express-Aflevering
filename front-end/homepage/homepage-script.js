@@ -1,4 +1,9 @@
-import getArtists from "../crud.js";
+import {
+  getArtists,
+  createArtistClicked,
+  updateArtistClicked,
+  deleteArtistClicked,
+} from "../crud.js";
 
 ("use strict");
 
@@ -17,6 +22,7 @@ function start() {
 
 function displayArtists(artists) {
   console.log("Displaying artists");
+  console.log(artists);
   document.querySelector("#artists-grid").innerHTML = "";
 
   function displayArtist(artist) {
@@ -32,7 +38,23 @@ function displayArtists(artists) {
         </div>
   `
     );
+    document
+      .querySelector("#artists-grid .artists-grid-item:last-child #update-btn")
+      .addEventListener("click", () => {
+        updateArtistClicked(artist);
+      });
+    document
+      .querySelector("#artists-grid .artists-grid-item:last-child #delete-btn")
+      .addEventListener("click", () => {
+        deleteArtistClicked(artist.id);
+      });
+    document
+      .querySelector("#artists-grid .artists-grid-item:last-child img")
+      .addEventListener("click", () => {
+        imageClicked(artist);
+      });
   }
+
   artists.forEach(displayArtist);
 }
 
@@ -42,10 +64,10 @@ async function updateArtGrid() {
   displayArtists(artists);
 }
 
-function favoritesBtnClicked() {}
+function favoritesBtnClicked() {
+  console.log("Showing favorites");
+}
 
-function createArtistClicked() {}
-
-function updateArtistClicked() {}
-
-function deleteArtistClicked() {}
+function imageClicked(artist) {
+  console.log("Showing details");
+}

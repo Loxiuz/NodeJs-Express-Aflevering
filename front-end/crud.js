@@ -2,7 +2,8 @@ const endpoint = "http://localhost:8080";
 
 async function getArtists() {
   const res = await fetch(`${endpoint}/artists`);
-  return prepareData(res);
+  const data = await res.json();
+  return prepareData(data);
 
   function prepareData(data) {
     const dataArr = [];
@@ -14,5 +15,19 @@ async function getArtists() {
     return dataArr;
   }
 }
+function createArtistClicked() {
+  console.log("Add Artist");
+}
+function updateArtistClicked(artist) {
+  console.log(`Editing: ${artist.name}`);
+}
+function deleteArtistClicked(artistId) {
+  console.log(`Deleted: ${artistId}`);
+}
 
-export default getArtists;
+export {
+  getArtists,
+  createArtistClicked,
+  updateArtistClicked,
+  deleteArtistClicked,
+};
