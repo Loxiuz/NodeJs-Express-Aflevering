@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Coldplay",
+    "birthdate": "",
+    "activevSince": "1997-present",
+    "genres": "Alternative Rock, Pop Rock, Pop",
+    "labels": "Parlophone, Atlantic, Capitol, Warner Music, EMI, Fierce Panda",
+    "website": "https://www.coldplay.com/",
+    "image": "https://wallpapers.com/images/high/coldplay-british-rock-band-members-1jwx4g675bc9kh9w.webp",
+    "shortDescription": "A British rockband consisting of pianist Chris Martin, guitarist Jonny Byckland, bassist Guy Berryman, drummer Will Champion and manager Phil Harvey",
+    "isBand": true
+  },
+  {
+    "name": "Taylor Swift",
+    "birthdate": "1989/12/13",
+    "activevSince": "2004-present",
+    "genres": "Pop, Country, Folk, Rock, Alternative",
+    "labels": "Republic, Big Machine",
+    "website": "https://taylorswift.com",
+    "image": "https://wallpapers.com/images/high/taylor-swift-iphone-moy8xxn2f0uurydc.webp",
+    "shortDescription": "An american singer-songwriter beginning their career at the age of 14 years old",
+    "isBand": false
+  },
+  {
+    "name": "Guns N' Roses",
+    "birthdate": "",
+    "activevSince": "1985-present",
+    "genres": "Hard Rock, Heavy Metal",
+    "labels": "Geffen, UMG, Uzi Suicide, Black Frog",
+    "website": "http://gunsnroses.com/",
+    "image": "https://wallpapers.com/images/high/1985-metals-defining-year-guns-n-roses-9b75mha8dnsmz0jz.webp",
+    "shortDescription": "An american hard rock band from Los Angeles consisting of vocalist Axl Rose, lead guitarist Slash, rhythm guitarist Izzy Stradin, bassist Duff McKagan and drummer Steven Adler"
+  }
+]

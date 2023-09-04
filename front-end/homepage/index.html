@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Musik Kunstnere</title>
+  </head>
+  <body>
+    <h1>Musik Kunstnere</h1>
+
+    <div id="menu">
+      <button id="favorites-btn">Favoritter</button>
+      <button id="create-btn">Tilføj Kunstner</button>
+      <label for="sort-select">Sortér</label>
+      <select name="" id="sort-select"></select>
+      <form id="filter-form">
+        <h3>Filtrér Kunstnere</h3>
+      </form>
+
+      <!-- <button id="update-btn">Redigér Kunstner</button>
+      <button id="delete-btn">Slet Kunstner</button> -->
+    </div>
+
+    <div id="grid-container">
+      <div id="artists-grid"></div>
+    </div>
+
+    <script src="homepage-script.js" type="module"></script>
+    <script src="/front-end/crud.js" type="module"></script>
+  </body>
+</html>
