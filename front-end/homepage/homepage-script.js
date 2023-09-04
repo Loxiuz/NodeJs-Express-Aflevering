@@ -42,6 +42,7 @@ function displayArtists(artists) {
       .querySelector("#artists-grid .artists-grid-item:last-child #update-btn")
       .addEventListener("click", () => {
         updateArtistClicked(artist);
+        updateArtGrid();
       });
     document
       .querySelector("#artists-grid .artists-grid-item:last-child #delete-btn")

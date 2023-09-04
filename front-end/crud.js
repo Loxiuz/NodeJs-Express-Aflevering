@@ -20,6 +20,12 @@ function createArtistClicked() {
 }
 function updateArtistClicked(artist) {
   console.log(`Editing: ${artist.name}`);
+
+  document
+    .querySelector("#artists-grid .artists-grid-item:last-child #update-btn")
+    .removeEventListener("click", () => {
+      updateArtistClicked(artist);
+    });
 }
 function deleteArtistClicked(artistId) {
   console.log(`Deleted: ${artistId}`);
