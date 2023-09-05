@@ -21,3 +21,6 @@ app.get("/artists", async (req, res) => {
   const json = JSON.parse(data);
   res.json(json);
 });
+app.post("/artists", async (req, res) => {});
+app.put("/artists", async (req, res) => {});
+app.delete("/artists", async (req, res) => {});
