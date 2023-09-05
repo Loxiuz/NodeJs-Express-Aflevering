@@ -32,6 +32,36 @@ function updateArtistClicked(artist) {
 
 function deleteArtistClicked(artistId) {
   console.log(`Deleted: ${artistId}`);
+
+  const dialog = document.querySelector("#detailedArtistDialog");
+  dialog.innerHTML = "";
+  dialog.insertAdjacentHTML(
+    "afterbegin",
+    /* html */ `
+    <h3>Slet ${artist.name}?</h3>
+    <button id="yes-btn">Ja</button>
+    <button id="no-btn">Nej</button>`
+  );
+  dialog.showModal();
+
+  document.querySelector("#no-btn").addEventListener("click", () => {
+    dialog.close();
+  });
+  document.querySelector("#yes-btn").addEventListener("click", () => {
+    deleteArtist();
+  });
+
+  async function deleteArtist() {
+    console.log(`Deleting: ${artist.name}`);
+    const res = await fetch(`${endpoint}/artists/${artist.id}`, {
+      method: "DELETE",
+    });
+    if (res.ok) {
+      console.log(`${artist.name} deleted!`);
+    } else {
+      console.log(`Error deleting ${artist.name}`);
+    }
+  }
 }
 
 export {
