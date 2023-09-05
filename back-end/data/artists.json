@@ -24,11 +24,11 @@
     "id": 1693927502724
   },
   {
-    "name": "Guns N' Roses",
+    "name": "Guns",
     "birthdate": "",
     "activeSince": "1985-present",
     "genres": "Hard Rock, Heavy Metal",
-    "labels": "Geffen, UMG, Uzi Suicide, Black Frog",
+    "labels": "Geffen, UMG",
     "website": "http://gunsnroses.com/",
     "image": "https://wallpapers.com/images/high/1985-metals-defining-year-guns-n-roses-9b75mha8dnsmz0jz.webp",
     "shortDescription": "An american hard rock band from Los Angeles consisting of vocalist Axl Rose, lead guitarist Slash, rhythm guitarist Izzy Stradin, bassist Duff McKagan and drummer Steven Adler",
@@ -44,7 +44,7 @@
     "website": "q",
     "image": "https://images.freeimages.com/images/large-previews/218/my-dog-cutter-1499799.jpg",
     "shortDescription": "q",
-    "isBand": false,
-    "id": 1693953170993
+    "isBand": true,
+    "id": 1693954874934
   }
 ]
