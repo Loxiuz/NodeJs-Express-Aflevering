@@ -82,6 +82,63 @@ function updateArtistClicked(artist) {
     .removeEventListener("click", () => {
       updateArtistClicked(artist);
     });
+
+  const form = document.querySelector("#createAndUpdateForm");
+  form.name.value = artist.name;
+  form.birthdate.value = artist.birthdate;
+  form.activeSince.value = artist.activeSince;
+  form.genres.value = artist.genres;
+  form.labels.value = artist.labels;
+  form.website.value = artist.website;
+  form.image.value = artist.image;
+  form.shortDescription.value = artist.shortDescription;
+  form.isBand.value = artist.isBand;
+
+  const dialog = document.querySelector("#createAndUpdateDialog");
+  dialog.showModal();
+  dialog.addEventListener("cancel", (event) => {
+    /*Prevents the dialog closing when pressing escape 
+   to make sure it doesn't send multiple requests at the same time  */
+    event.preventDefault();
+  });
+
+  document
+    .querySelector("#confirm-btn")
+    .addEventListener("click", updateArtist);
+
+  function updateArtist() {
+    console.log("update artist");
+
+    const updatedArtist = {
+      name: form.name.value,
+      birthdate: form.birthdate.value,
+      activeSince: form.activeSince.value,
+      genres: form.genres.value,
+      labels: form.labels.value,
+      website: form.website.value,
+      image: form.image.value,
+      shortDescription: form.shortDescription.value,
+      isBand: form.isBand.value,
+    };
+
+    sendUpdatedArtist();
+
+    async function sendUpdatedArtist() {
+      console.log(`Updating: ${artist.name}`);
+      console.log(updatedArtist);
+
+      const res = await fetch(`${endpoint}/artists/${artist.id}`, {
+        method: "PUT",
+        body: updatedArtist,
+      });
+      if (res.ok) {
+        console.log("Update successfull");
+        location.reload();
+      } else {
+        console.log("Failed to update");
+      }
+    }
+  }
 }
 
 function deleteArtistClicked(artist) {
