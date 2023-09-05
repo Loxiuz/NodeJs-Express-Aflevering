@@ -36,13 +36,13 @@ app.post("/artists", async (req, res) => {
 });
 
 app.put("/artists/:id", async (req, res) => {
-  const artistId = req.params.id;
+  const artistId = Number(req.params.id);
   console.log(artistId);
 
   const data = await fs.readFile("data/artists.json");
   const artists = JSON.parse(data);
 
-  let artistToUpdate = artists.find((artist) => artist.id === Number(artistId));
+  let artistToUpdate = artists.find((artist) => artist.id === artistId);
   console.log("Updating: " + artistToUpdate.name);
   const reqBody = req.body;
   console.log(reqBody);
@@ -61,4 +61,17 @@ app.put("/artists/:id", async (req, res) => {
   res.send(artists);
 });
 
-app.delete("/artists/:id", async (req, res) => {});
+app.delete("/artists/:id", async (req, res) => {
+  const artistId = Number(req.params.id);
+  console.log(artistId);
+
+  const data = await fs.readFile("data/artists.json");
+  const artists = JSON.parse(data);
+
+  const newArtistsArr = artists.filter((artist) => {
+    return artist.id != artistId;
+  });
+
+  fs.writeFile("data/artists.json", JSON.stringify(newArtistsArr));
+  res.json(newArtistsArr);
+});
