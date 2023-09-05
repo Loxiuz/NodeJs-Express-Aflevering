@@ -24,9 +24,32 @@
     </div>
 
     <div id="dialog-container">
-      <dialog class="dialog" id="createArtDialog"></dialog>
-      <dialog class="dialog" id="updateArtDialog"></dialog>
-      <dialog class="dialog" id="detailedArtDialog"></dialog>
+      <dialog id="createAndUpdateDialog">
+        <form id="createAndUpdateForm">
+          <label for="name">Navn: </label>
+          <input type="text" name="name" />
+          <label for="birthdate">Fødselsdag: </label>
+          <input type="text" name="birthdate" />
+          <label for="activeSince">Aktiv siden: </label>
+          <input type="text" name="activeSince" />
+          <label for="genres">Genrer</label>
+          <input type="text" name="genres" />
+          <label for="labels">Pladeselskaber: </label>
+          <input type="text" name="labels" />
+          <label for="website">Hjemmeside: </label>
+          <input type="text" name="website" />
+          <label for="image">Billede: </label>
+          <input type="text" name="image" />
+          <label for="shortDescription">Kort Beskrivelse</label>
+          <input type="text" name="shortDescription" />
+          <label for="isBand">Er et band: </label>
+          <input type="checkbox" name="isBand" />
+
+          <button id="confirm-btn">Bekræft</button>
+          <button id="cancel-btn">Luk</button>
+        </form>
+      </dialog>
+      <dialog id="detailedArtistDialog"></dialog>
     </div>
     <script src="homepage-script.js" type="module"></script>
     <script src="/front-end/crud.js" type="module"></script>
