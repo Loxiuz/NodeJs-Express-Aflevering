@@ -9,23 +9,21 @@ function createArtistClicked() {
   const dialog = document.querySelector("#createAndUpdateDialog");
   dialog.showModal();
   dialog.addEventListener("cancel", (event) => {
-    /*Prevents the dialog closing when pressing escape 
-   to make sure it doesn't send multiple requests at the same time  */
     event.preventDefault();
   });
+
   const form = document.querySelector("#createAndUpdateForm");
-  document
-    .querySelector("#confirm-btn")
-    .addEventListener("click", createArtist);
+  document;
+  form.addEventListener("submit", createArtist);
   document.querySelector("#cancel-btn").addEventListener("click", () => {
     location.reload();
   });
 
-  function createArtist() {
+  function createArtist(event) {
+    event.preventDefault();
     console.log("Creating Artist");
-    document
-      .querySelector("#confirm-btn")
-      .removeEventListener("click", createArtist);
+    document;
+    form.removeEventListener("submit", createArtist);
 
     const newArtist = {
       name: form.name.value,
@@ -42,19 +40,19 @@ function createArtistClicked() {
       return form.querySelector("input[type='checkbox']").checked;
     }
     console.log(newArtist);
-    sendNewArtist(newArtist);
+    sendNewArtist();
     dialog.close();
 
-    async function sendNewArtist(newArtist) {
+    async function sendNewArtist() {
       console.log("Posting member");
 
       const res = await fetch(`${endpoint}/artists`, {
         method: "POST",
-        body: newArtist,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newArtist),
       });
       if (res.ok) {
         console.log("Added artist successfully");
-        location.reload();
       } else {
         console.log("Error with post response from server");
       }
