@@ -1,16 +1,5 @@
 [
   {
-    "name": "Guns N' Roses",
-    "birthdate": "",
-    "activeSince": "1985-present",
-    "genres": "Hard Rock, Heavy Metal",
-    "labels": "Geffen, UMG, Uzi Suicide, Black Frog",
-    "website": "http://gunsnroses.com/",
-    "image": "https://wallpapers.com/images/high/1985-metals-defining-year-guns-n-roses-9b75mha8dnsmz0jz.webp",
-    "shortDescription": "An american hard rock band from Los Angeles consisting of vocalist Axl Rose, lead guitarist Slash, rhythm guitarist Izzy Stradin, bassist Duff McKagan and drummer Steven Adler",
-    "id": 1693918986396
-  },
-  {
     "name": "Taylor Swift",
     "birthdate": "1989/12/13",
     "activeSince": "2004-present",
@@ -33,5 +22,17 @@
     "shortDescription": "A British rockband consisting of pianist Chris Martin, guitarist Jonny Byckland, bassist Guy Berryman, drummer Will Champion and manager Phil Harvey",
     "isBand": true,
     "id": 1693927502724
+  },
+  {
+    "name": "Guns N' Roses",
+    "birthdate": "",
+    "activeSince": "1985-present",
+    "genres": "Hard Rock, Heavy Metal",
+    "labels": "Geffen, UMG, Uzi Suicide, Black Frog",
+    "website": "http://gunsnroses.com/",
+    "image": "https://wallpapers.com/images/high/1985-metals-defining-year-guns-n-roses-9b75mha8dnsmz0jz.webp",
+    "shortDescription": "An american hard rock band from Los Angeles consisting of vocalist Axl Rose, lead guitarist Slash, rhythm guitarist Izzy Stradin, bassist Duff McKagan and drummer Steven Adler",
+    "isBand": true,
+    "id": 1693945521293
   }
 ]

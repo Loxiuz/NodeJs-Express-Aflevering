@@ -42,12 +42,11 @@ function displayArtists(artists) {
       .querySelector("#artists-grid .artists-grid-item:last-child #update-btn")
       .addEventListener("click", () => {
         updateArtistClicked(artist);
-        updateArtGrid();
       });
     document
       .querySelector("#artists-grid .artists-grid-item:last-child #delete-btn")
       .addEventListener("click", () => {
-        deleteArtistClicked(artist.id);
+        deleteArtistClicked(artist);
       });
     document
       .querySelector("#artists-grid .artists-grid-item:last-child img")
@@ -67,8 +66,16 @@ async function updateArtGrid() {
 
 function favoritesBtnClicked() {
   console.log("Showing favorites");
+  document
+    .querySelector("#favorites-btn")
+    .removeEventListener("click", favoritesBtnClicked);
 }
 
 function imageClicked(artist) {
   console.log("Showing details");
+  document
+    .querySelector("#artists-grid .artists-grid-item:last-child img")
+    .removeEventListener("click", () => {
+      imageClicked(artist);
+    });
 }
