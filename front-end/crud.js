@@ -15,9 +15,11 @@ async function getArtists() {
     return dataArr;
   }
 }
+
 function createArtistClicked() {
   console.log("Add Artist");
 }
+
 function updateArtistClicked(artist) {
   console.log(`Editing: ${artist.name}`);
 
@@ -27,6 +29,7 @@ function updateArtistClicked(artist) {
       updateArtistClicked(artist);
     });
 }
+
 function deleteArtistClicked(artistId) {
   console.log(`Deleted: ${artistId}`);
 }
