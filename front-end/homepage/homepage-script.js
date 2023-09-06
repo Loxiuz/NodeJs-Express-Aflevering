@@ -19,6 +19,9 @@ function start() {
   document
     .querySelector("#create-btn")
     .addEventListener("click", createArtistClicked);
+  document
+    .querySelector("#filter-form")
+    .addEventListener("change", filterArtistsByGenre);
 }
 
 function displayArtists(artists) {
@@ -179,31 +182,27 @@ async function makeFilterCheckboxes() {
         }
       }
     }
-    filterArtistsByGenre();
-
-    function filterArtistsByGenre() {
-      document.querySelector("#filter-form").addEventListener("change", () => {
-        const selected = [];
-        const inputs = document
-          .querySelector("#filter-form")
-          .querySelectorAll("input[type='checkbox']");
-
-        for (const input of inputs) {
-          if (input.checked) {
-            selected.push(input.value);
-          }
-        }
-        if (selected.length === 0) {
-          updateArtGrid();
-        } else {
-          const filteredArtists = artists.filter((artist) => {
-            return selected.some((genre) => artist.genres.includes(genre));
-          });
-          displayArtists(filteredArtists);
-        }
-      });
-    }
-
     return differentGenres;
+  }
+}
+async function filterArtistsByGenre() {
+  const artists = await getArtists();
+  const selected = [];
+  const inputs = document
+    .querySelector("#filter-form")
+    .querySelectorAll("input[type='checkbox']");
+
+  for (const input of inputs) {
+    if (input.checked) {
+      selected.push(input.value);
+    }
+  }
+  if (selected.length === 0) {
+    updateArtGrid();
+  } else {
+    const filteredArtists = artists.filter((artist) => {
+      return selected.some((genre) => artist.genres.includes(genre));
+    });
+    displayArtists(filteredArtists);
   }
 }
