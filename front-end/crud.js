@@ -36,9 +36,6 @@ function createArtistClicked() {
       shortDescription: form.shortDescription.value,
       isBand: isBandChecked(),
     };
-    function isBandChecked() {
-      return form.querySelector("input[type='checkbox']").checked;
-    }
     console.log(newArtist);
     sendNewArtist();
     dialog.close();
@@ -58,6 +55,12 @@ function createArtistClicked() {
       }
     }
   }
+}
+
+function isBandChecked() {
+  return document
+    .querySelector("#createAndUpdateForm")
+    .querySelector("input[type='checkbox']").checked;
 }
 
 async function getArtists() {
@@ -92,7 +95,6 @@ function updateArtistClicked(artist) {
   form.website.value = artist.website;
   form.image.value = artist.image;
   form.shortDescription.value = artist.shortDescription;
-  form.isBand.value = artist.isBand;
 
   const dialog = document.querySelector("#createAndUpdateDialog");
   dialog.showModal();
@@ -102,12 +104,15 @@ function updateArtistClicked(artist) {
     event.preventDefault();
   });
 
-  document
-    .querySelector("#confirm-btn")
-    .addEventListener("click", updateArtist);
+  form.addEventListener("submit", updateArtist);
+  document.querySelector("#cancel-btn").addEventListener("click", () => {
+    location.reload();
+  });
 
   function updateArtist() {
     console.log("update artist");
+
+    form.removeEventListener("submit", updateArtist);
 
     const updatedArtist = {
       name: form.name.value,
@@ -118,9 +123,8 @@ function updateArtistClicked(artist) {
       website: form.website.value,
       image: form.image.value,
       shortDescription: form.shortDescription.value,
-      isBand: form.isBand.value,
+      isBand: isBandChecked(),
     };
-
     sendUpdatedArtist();
 
     async function sendUpdatedArtist() {
@@ -129,11 +133,11 @@ function updateArtistClicked(artist) {
 
       const res = await fetch(`${endpoint}/artists/${artist.id}`, {
         method: "PUT",
-        body: updatedArtist,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedArtist),
       });
       if (res.ok) {
         console.log("Update successfull");
-        location.reload();
       } else {
         console.log("Failed to update");
       }
