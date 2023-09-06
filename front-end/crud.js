@@ -14,6 +14,7 @@ function createArtistClicked() {
 
   const form = document.querySelector("#createAndUpdateForm");
   document;
+  form.reset();
   form.addEventListener("submit", createArtist);
   document.querySelector("#cancel-btn").addEventListener("click", () => {
     location.reload();
@@ -109,7 +110,8 @@ function updateArtistClicked(artist) {
     location.reload();
   });
 
-  function updateArtist() {
+  function updateArtist(event) {
+    event.preventDefault();
     console.log("update artist");
 
     form.removeEventListener("submit", updateArtist);
