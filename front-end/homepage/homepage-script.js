@@ -9,12 +9,14 @@ import {
 
 window.addEventListener("load", start);
 
+const favorites = [];
+
 function start() {
   updateArtGrid();
 
   document
     .querySelector("#favorites-btn")
-    .addEventListener("click", favoritesBtnClicked);
+    .addEventListener("click", favoritesClicked);
   document
     .querySelector("#create-btn")
     .addEventListener("click", createArtistClicked);
@@ -35,6 +37,7 @@ function displayArtists(artists) {
             <div id = "genres">${artist.genres}</div>
             <button id="update-btn">Redigér</button>
             <button id="delete-btn">Slet</button>
+            <button id="addToFav-btn">Føj til favoritter</button>
         </div>
   `
     );
@@ -53,6 +56,13 @@ function displayArtists(artists) {
       .addEventListener("click", () => {
         imageClicked(artist);
       });
+    document
+      .querySelector(
+        "#artists-grid .artists-grid-item:last-child #addToFav-btn"
+      )
+      .addEventListener("click", () => {
+        addArtistToFavorite(artist);
+      });
   }
 
   artists.forEach(displayArtist);
@@ -64,11 +74,19 @@ async function updateArtGrid() {
   displayArtists(artists);
 }
 
-function favoritesBtnClicked() {
+function addArtistToFavorite(artist) {
+  console.log(artist.name + " Added to favourites");
+  if (!favorites.includes(artist.id)) {
+    favorites.push(artist.id);
+  }
+  console.log(favorites);
+}
+
+function favoritesClicked() {
   console.log("Showing favorites");
   document
     .querySelector("#favorites-btn")
-    .removeEventListener("click", favoritesBtnClicked);
+    .removeEventListener("click", favoritesClicked);
 }
 
 function imageClicked(artist) {
@@ -78,4 +96,27 @@ function imageClicked(artist) {
     .removeEventListener("click", () => {
       imageClicked(artist);
     });
+
+  const dialog = document.querySelector("#detailedArtistDialog");
+  dialog.innerHTML = "";
+  dialog.insertAdjacentHTML(
+    "beforeend",
+    /* html */ `
+    <button id="close-details-btn">X</button>
+    <img src=${artist.image}> 
+    <h2>${artist.name}</h2>
+    <p>${artist.shortDescription}</p>  
+    <ul>
+      <li>${artist.birthdate}</li>
+      <li>${artist.activeSince}</li>
+      <li>${artist.genres}</li>
+      <li>${artist.labels}</li>
+      <li>${artist.website}</li>
+    </ul>
+  `
+  );
+  dialog.showModal();
+  document.querySelector("#close-details-btn").addEventListener("click", () => {
+    dialog.close();
+  });
 }

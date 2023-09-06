@@ -4,9 +4,7 @@
   "description": "",
   "main": "app.js",
   "type": "module",
-  "scripts": {
-    "start": "node --watch app.js"
-  },
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",

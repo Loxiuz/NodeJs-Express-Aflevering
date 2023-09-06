@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  background-color: grey;
+}
+img {
+  width: 70%;
+}
+#grid-container {
+  width: 100%;
+}
+#artists-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+@media (min-width: 630px) {
+  #artists-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 930px) {
+  #artists-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (min-width: 1200px) {
+  #artists-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+#dialog-container {
+  position: fixed;
+}
+.artists-grid-item {
+  display: grid;
+  border: 1em solid darkgreen;
+}
+#detailedArtistDialog {
+  display: grid;
+}
+#detailedArtistDialog button {
+  width: min-content;
+  position: relative;
+  left: 98%;
+}
