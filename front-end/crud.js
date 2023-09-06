@@ -30,7 +30,7 @@ function createArtistClicked() {
       name: form.name.value,
       birthdate: form.birthdate.value,
       activeSince: form.activeSince.value,
-      genres: form.genres.value,
+      genres: convertGenresToArray(form.genres.value),
       labels: form.labels.value,
       website: form.website.value,
       image: form.image.value,
@@ -56,6 +56,9 @@ function createArtistClicked() {
       }
     }
   }
+}
+function convertGenresToArray(genres) {
+  return genres.split(",").map((genre) => genre.trim());
 }
 
 async function getArtists() {
@@ -114,7 +117,7 @@ function updateArtistClicked(artist) {
       name: form.name.value,
       birthdate: form.birthdate.value,
       activeSince: form.activeSince.value,
-      genres: form.genres.value,
+      genres: convertGenresToArray(form.genres.value),
       labels: form.labels.value,
       website: form.website.value,
       image: form.image.value,

@@ -44,7 +44,6 @@ body {
 /* ------ Dialogs ------ */
 #dialog-container {
   position: fixed;
-  left: -50%;
 }
 #detailedArtistDialog {
   display: grid;

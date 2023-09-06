@@ -13,7 +13,7 @@ const favorites = [];
 
 function start() {
   updateArtGrid();
-
+  makeFilterCheckboxes();
   document
     .querySelector("#favorites-btn")
     .addEventListener("click", favoritesClicked);
@@ -119,4 +119,64 @@ function imageClicked(artist) {
   document.querySelector("#close-details-btn").addEventListener("click", () => {
     dialog.close();
   });
+}
+
+async function makeFilterCheckboxes() {
+  console.log("Creation of filter checkboxes");
+  const genres = await getGenresFromArtists();
+  for (let i = 0; i < genres.length; i++) {
+    const genresHtml = /* html */ `
+    <input 
+      type="checkbox" 
+      name="genre" 
+      id="${genres[i].toLowerCase()}"
+      value="${genres[i]}"
+    />
+    <label for="${genres[i].toLowerCase()}">${genres[i]}</label>
+    <br/>
+    `;
+    document
+      .querySelector("#filter-form")
+      .insertAdjacentHTML("beforeend", genresHtml);
+  }
+
+  async function getGenresFromArtists() {
+    console.log("Get different genres from artists");
+    const artists = await getArtists();
+
+    let differentGenres = [];
+    for (let i = 0; i < artists.length; i++) {
+      for (let q = 0; q < artists[i].genres.length; q++) {
+        if (!differentGenres.includes(artists[i].genres[q])) {
+          differentGenres.push(artists[i].genres[q]);
+        }
+      }
+    }
+    filterArtistsByGenre();
+
+    function filterArtistsByGenre() {
+      document.querySelector("#filter-form").addEventListener("change", () => {
+        const selected = [];
+        const inputs = document
+          .querySelector("#filter-form")
+          .querySelectorAll("input[type='checkbox']");
+
+        for (const input of inputs) {
+          if (input.checked) {
+            selected.push(input.value);
+          }
+        }
+        if (selected.length === 0) {
+          updateArtGrid();
+        } else {
+          const filteredArtists = artists.filter((artist) => {
+            return selected.some((genre) => artist.genres.includes(genre));
+          });
+          displayArtists(filteredArtists);
+        }
+      });
+    }
+
+    return differentGenres;
+  }
 }
