@@ -22,6 +22,9 @@ function start() {
   document
     .querySelector("#filter-form")
     .addEventListener("change", filterArtistsByGenre);
+  document
+    .querySelector("#sort-select")
+    .addEventListener("change", sortArtists);
 }
 
 function displayArtists(artists) {
@@ -31,7 +34,7 @@ function displayArtists(artists) {
 
   function displayArtist(artist) {
     document.querySelector("#artists-grid").insertAdjacentHTML(
-      "beforeend",
+      "afterbegin",
       /* html */ `
         <div class="artists-grid-item">
             <img src=${artist.image}>
@@ -204,5 +207,33 @@ async function filterArtistsByGenre() {
       return selected.some((genre) => artist.genres.includes(genre));
     });
     displayArtists(filteredArtists);
+  }
+}
+
+async function sortArtists() {
+  const dropdown = document.querySelector("#sort-select");
+  const selected = dropdown.value;
+  const artists = await getArtists();
+
+  let sorted = null;
+  switch (selected) {
+    case "az":
+      sorted = artists.sort((a, b) => {
+        if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+        return -1;
+      });
+      break;
+    case "za":
+      sorted = artists.sort((a, b) => {
+        if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+        return -1;
+      });
+      break;
+    default:
+      displayArtists(artists);
+      break;
+  }
+  if (sorted) {
+    displayArtists(sorted);
   }
 }
