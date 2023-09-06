@@ -33,8 +33,8 @@ function displayArtists(artists) {
       /* html */ `
         <div class="artists-grid-item">
             <img src=${artist.image}>
-            <div id = "name">${artist.name}</div>
-            <div id = "genres">${artist.genres}</div>
+            <p id = "name">${artist.name}</p>
+            <p id = "genres">${artist.genres}</p>
             <button id="update-btn">Redigér</button>
             <button id="delete-btn">Slet</button>
             <button id="addToFav-btn">Føj til favoritter</button>
