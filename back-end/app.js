@@ -54,7 +54,7 @@ app.put("/artists/:id", async (req, res) => {
   artistToUpdate.website = reqBody.website;
   artistToUpdate.image = reqBody.image;
   artistToUpdate.shortDescription = reqBody.shortDescription;
-  artistToUpdate.isBand = reqBody.isBand;
+  artistToUpdate.isFavorite = reqBody.isFavorite;
 
   await fs.writeFile("data/artists.json", JSON.stringify(artists));
 

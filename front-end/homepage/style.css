@@ -2,7 +2,7 @@ body {
   margin: 0;
   background-color: grey;
 }
-
+/* ------ Artists grid and items ------ */
 #grid-container {
   width: 100%;
 }
@@ -27,10 +27,6 @@ body {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
-#dialog-container {
-  position: fixed;
-  left: -50%;
-}
 .artists-grid-item {
   display: grid;
   grid-template-columns: 1fr;
@@ -44,6 +40,11 @@ body {
   height: 20em;
   object-fit: cover;
   object-position: top;
+}
+/* ------ Dialogs ------ */
+#dialog-container {
+  position: fixed;
+  left: -50%;
 }
 #detailedArtistDialog {
   display: grid;

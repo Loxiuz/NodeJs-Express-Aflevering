@@ -15,7 +15,8 @@
       <label for="sort-select">Sortér</label>
       <select name="" id="sort-select"></select>
       <form id="filter-form">
-        <h3>Filtrér Kunstnere</h3>
+        <h3>Filtrér Genre</h3>
+        
       </form>
     </div>
 
@@ -42,14 +43,13 @@
           <input type="text" name="image" />
           <label for="shortDescription">Kort Beskrivelse</label>
           <input type="text" name="shortDescription" />
-          <label for="isBand">Er et band: </label>
-          <input type="checkbox" name="isBand"/>
           
           <input type="submit" id="confirm-btn" value="Bekræft"></input>
           <input type="button" id="cancel-btn" value="Luk"></input>
         </form>
       </dialog>
       <dialog id="detailedArtistDialog"></dialog>
+      <dialog id="deleteDialog"></dialog>
     </div>
     <script src="homepage-script.js" type="module"></script>
     <script src="/front-end/crud.js" type="module"></script>

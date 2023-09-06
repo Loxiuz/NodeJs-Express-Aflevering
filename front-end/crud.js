@@ -35,7 +35,7 @@ function createArtistClicked() {
       website: form.website.value,
       image: form.image.value,
       shortDescription: form.shortDescription.value,
-      isBand: isBandChecked(),
+      isFavorite: false,
     };
     console.log(newArtist);
     sendNewArtist();
@@ -56,12 +56,6 @@ function createArtistClicked() {
       }
     }
   }
-}
-
-function isBandChecked() {
-  return document
-    .querySelector("#createAndUpdateForm")
-    .querySelector("input[type='checkbox']").checked;
 }
 
 async function getArtists() {
@@ -125,7 +119,7 @@ function updateArtistClicked(artist) {
       website: form.website.value,
       image: form.image.value,
       shortDescription: form.shortDescription.value,
-      isBand: isBandChecked(),
+      isFavorite: artist.isFavorite,
     };
     sendUpdatedArtist();
 
@@ -155,7 +149,7 @@ function deleteArtistClicked(artist) {
       deleteArtistClicked(artist);
     });
 
-  const dialog = document.querySelector("#detailedArtistDialog");
+  const dialog = document.querySelector("#deleteDialog");
   dialog.innerHTML = "";
   dialog.insertAdjacentHTML(
     "afterbegin",

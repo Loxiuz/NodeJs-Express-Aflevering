@@ -8,7 +8,7 @@
     "website": "https://taylorswift.com",
     "image": "https://wallpapers.com/images/high/taylor-swift-iphone-moy8xxn2f0uurydc.webp",
     "shortDescription": "An american singer-songwriter beginning their career at the age of 14 years old",
-    "isBand": false,
+    "isFavorite": false,
     "id": 1693919085453
   },
   {
@@ -20,7 +20,7 @@
     "website": "https://www.coldplay.com/",
     "image": "https://wallpapers.com/images/high/coldplay-british-rock-band-members-1jwx4g675bc9kh9w.webp",
     "shortDescription": "A British rockband consisting of pianist Chris Martin, guitarist Jonny Byckland, bassist Guy Berryman, drummer Will Champion and manager Phil Harvey",
-    "isBand": true,
+    "isFavorite": true,
     "id": 1693927502724
   },
   {
@@ -32,7 +32,7 @@
     "website": "http://gunsnroses.com/",
     "image": "https://wallpapers.com/images/high/1985-metals-defining-year-guns-n-roses-9b75mha8dnsmz0jz.webp",
     "shortDescription": "An american hard rock band from Los Angeles consisting of vocalist Axl Rose, lead guitarist Slash, rhythm guitarist Izzy Stradin, bassist Duff McKagan and drummer Steven Adler",
-    "isBand": true,
+    "isFavorite": true,
     "id": 1693950106357
   },
   {
@@ -44,7 +44,7 @@
     "website": "q",
     "image": "https://images.freeimages.com/images/large-previews/218/my-dog-cutter-1499799.jpg",
     "shortDescription": "q",
-    "isBand": true,
-    "id": 1693954874934
+    "isFavorite": false,
+    "id": 1694022978356
   }
 ]
