@@ -3,20 +3,19 @@ import {
   createArtistClicked,
   updateArtistClicked,
   deleteArtistClicked,
+  setArtistFavorit,
 } from "../crud.js";
 
 ("use strict");
 
 window.addEventListener("load", start);
 
-const favorites = [];
-
 function start() {
   updateArtGrid();
   makeFilterCheckboxes();
   document
     .querySelector("#favorites-btn")
-    .addEventListener("click", favoritesClicked);
+    .addEventListener("change", favoritesClicked);
   document
     .querySelector("#create-btn")
     .addEventListener("click", createArtistClicked);
@@ -33,11 +32,11 @@ function displayArtists(artists) {
       /* html */ `
         <div class="artists-grid-item">
             <img src=${artist.image}>
+            <p>Favorit: ${artist.isFavorite}</p>
             <p id = "name">${artist.name}</p>
             <p id = "genres">${artist.genres}</p>
             <button id="update-btn">Redigér</button>
             <button id="delete-btn">Slet</button>
-            <button id="addToFav-btn">Føj til favoritter</button>
         </div>
   `
     );
@@ -56,15 +55,40 @@ function displayArtists(artists) {
       .addEventListener("click", () => {
         imageClicked(artist);
       });
-    document
-      .querySelector(
-        "#artists-grid .artists-grid-item:last-child #addToFav-btn"
-      )
-      .addEventListener("click", () => {
-        addArtistToFavorite(artist);
-      });
+    if (artist.isFavorite === true) {
+      document
+        .querySelector("#artists-grid .artists-grid-item:last-child")
+        .insertAdjacentHTML(
+          "beforeend",
+          /* html */ `
+          <button id="removeFromFav-btn">Fjern fra favoritter</button>
+       `
+        );
+      document
+        .querySelector(
+          "#artists-grid .artists-grid-item:last-child #removeFromFav-btn"
+        )
+        .addEventListener("click", () => {
+          setArtistFavorit(artist, false);
+        });
+    } else {
+      document
+        .querySelector("#artists-grid .artists-grid-item:last-child")
+        .insertAdjacentHTML(
+          "beforeend",
+          /* html */ `
+      <button id="addToFav-btn">Føj til favoritter</button>
+       `
+        );
+      document
+        .querySelector(
+          "#artists-grid .artists-grid-item:last-child #addToFav-btn"
+        )
+        .addEventListener("click", () => {
+          setArtistFavorit(artist, true);
+        });
+    }
   }
-
   artists.forEach(displayArtist);
 }
 
@@ -74,19 +98,22 @@ async function updateArtGrid() {
   displayArtists(artists);
 }
 
-function addArtistToFavorite(artist) {
-  console.log(artist.name + " Added to favourites");
-  if (!favorites.includes(artist.id)) {
-    favorites.push(artist.id);
-  }
-  console.log(favorites);
-}
-
-function favoritesClicked() {
+async function favoritesClicked() {
   console.log("Showing favorites");
   document
     .querySelector("#favorites-btn")
     .removeEventListener("click", favoritesClicked);
+
+  const checkbox = document.querySelector("#favorites-btn");
+  if (checkbox.checked) {
+    const artists = await getArtists();
+    const favorites = artists.filter((artist) => {
+      return artist.isFavorite === true;
+    });
+    displayArtists(favorites);
+  } else {
+    updateArtGrid();
+  }
 }
 
 function imageClicked(artist) {

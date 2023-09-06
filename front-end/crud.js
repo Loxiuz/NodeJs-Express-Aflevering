@@ -144,6 +144,32 @@ function updateArtistClicked(artist) {
   }
 }
 
+async function setArtistFavorit(artist, isFavorite) {
+  console.log(artist.name + " Added to favourites");
+
+  let updated;
+  if (isFavorite) {
+    updated = {
+      isFavorite: true,
+    };
+  } else {
+    updated = {
+      isFavorite: false,
+    };
+  }
+
+  const res = await fetch(`${endpoint}/artists/${artist.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updated),
+  });
+  if (res.ok) {
+    console.log("Update successfull");
+  } else {
+    console.log("Failed to update");
+  }
+}
+
 function deleteArtistClicked(artist) {
   console.log(`Delete: ${artist.name}`);
   document
@@ -187,5 +213,6 @@ export {
   createArtistClicked,
   getArtists,
   updateArtistClicked,
+  setArtistFavorit,
   deleteArtistClicked,
 };
