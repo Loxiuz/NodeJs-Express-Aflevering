@@ -34,7 +34,7 @@ function displayArtists(artists) {
 
   function displayArtist(artist) {
     document.querySelector("#artists-grid").insertAdjacentHTML(
-      "afterbegin",
+      "beforeend",
       /* html */ `
         <div class="artists-grid-item">
             <img src=${artist.image}>
@@ -95,7 +95,7 @@ function displayArtists(artists) {
         });
     }
   }
-  artists.forEach(displayArtist);
+  artists.slice().reverse().forEach(displayArtist);
 }
 
 async function updateArtGrid() {
@@ -219,14 +219,14 @@ async function sortArtists() {
   switch (selected) {
     case "az":
       sorted = artists.sort((a, b) => {
-        if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
-        return -1;
+        if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+        return 1;
       });
       break;
     case "za":
       sorted = artists.sort((a, b) => {
-        if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-        return -1;
+        if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+        return 1;
       });
       break;
     default:
