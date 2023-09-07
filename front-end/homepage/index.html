@@ -25,8 +25,15 @@
       </select>
       <label for="favorites-btn">Vis Favoritter: </label>
       <input type="checkbox" id="favorites-btn" name="favorites-btn">
+      
+      <div id="filter">
+        <h3>Filtrér Genre:</h3>
+        <form id="filter-form">
+        </form>
+      </div>
+      
     </div>
-    
+
     <div id="grid-container">
       <div id="artists-grid"></div>
     </div>
@@ -55,7 +62,7 @@
           <input type="button" id="cancel-btn" value="Luk"></input>
         </form>
       </dialog>
-      <dialog id="detailedArtistDialog"></dialog>
+      <dialog id="detailedArtistDialog" class="hidden"></dialog>
       <dialog id="deleteDialog"></dialog>
     </div>
     <script src="homepage-script.js" type="module"></script>

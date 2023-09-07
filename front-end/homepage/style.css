@@ -17,6 +17,18 @@ header {
 .hidden {
   visibility: hidden;
 }
+h1 {
+  text-align: center;
+}
+.hidden {
+  visibility: hidden;
+}
+h1 {
+  text-align: center;
+}
+.hidden {
+  visibility: hidden;
+}
 /* ------ Artists grid and items ------ */
 #grid-container {
   width: 100%;
@@ -77,10 +89,10 @@ header {
 /* ------ Dialogs ------ */
 #dialog-container {
   position: fixed;
-  left: -50%;
 }
 #detailedArtistDialog {
   display: grid;
+  position: relative;
 }
 #detailedArtistDialog button {
   width: min-content;

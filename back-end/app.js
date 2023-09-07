@@ -44,17 +44,12 @@ app.put("/artists/:id", async (req, res) => {
 
   let artistToUpdate = artists.find((artist) => artist.id === artistId);
   console.log("Updating: " + artistToUpdate.name);
-  const reqBody = req.body;
-  console.log(reqBody);
-  artistToUpdate.name = reqBody.name;
-  artistToUpdate.birthdate = reqBody.birthdate;
-  artistToUpdate.activeSince = reqBody.activeSince;
-  artistToUpdate.genres = reqBody.genres;
-  artistToUpdate.labels = reqBody.labels;
-  artistToUpdate.website = reqBody.website;
-  artistToUpdate.image = reqBody.image;
-  artistToUpdate.shortDescription = reqBody.shortDescription;
-  artistToUpdate.isFavorite = reqBody.isFavorite;
+
+  for (const prop in req.body) {
+    if (req.body.hasOwnProperty(prop) && artistToUpdate.hasOwnProperty(prop)) {
+      artistToUpdate[prop] = req.body[prop];
+    }
+  }
 
   await fs.writeFile("data/artists.json", JSON.stringify(artists));
 

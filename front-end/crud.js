@@ -30,7 +30,7 @@ function createArtistClicked() {
       name: form.name.value,
       birthdate: form.birthdate.value,
       activeSince: form.activeSince.value,
-      genres: form.genres.value,
+      genres: convertGenresToArray(form.genres.value),
       labels: form.labels.value,
       website: form.website.value,
       image: form.image.value,
@@ -56,6 +56,9 @@ function createArtistClicked() {
       }
     }
   }
+}
+function convertGenresToArray(genres) {
+  return genres.split(",").map((genre) => genre.trim());
 }
 
 async function getArtists() {
@@ -114,7 +117,7 @@ function updateArtistClicked(artist) {
       name: form.name.value,
       birthdate: form.birthdate.value,
       activeSince: form.activeSince.value,
-      genres: form.genres.value,
+      genres: convertGenresToArray(form.genres.value),
       labels: form.labels.value,
       website: form.website.value,
       image: form.image.value,
@@ -138,6 +141,32 @@ function updateArtistClicked(artist) {
         console.log("Failed to update");
       }
     }
+  }
+}
+
+async function setArtistFavorit(artist, isFavorite) {
+  console.log(artist.name + " Added to favourites");
+
+  let updated;
+  if (isFavorite) {
+    updated = {
+      isFavorite: true,
+    };
+  } else {
+    updated = {
+      isFavorite: false,
+    };
+  }
+
+  const res = await fetch(`${endpoint}/artists/${artist.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updated),
+  });
+  if (res.ok) {
+    console.log("Update successfull");
+  } else {
+    console.log("Failed to update");
   }
 }
 
@@ -184,5 +213,6 @@ export {
   createArtistClicked,
   getArtists,
   updateArtistClicked,
+  setArtistFavorit,
   deleteArtistClicked,
 };
