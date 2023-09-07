@@ -27,6 +27,11 @@ body {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
+@media (min-width: 1500px) {
+  #artists-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
 .artists-grid-item {
   display: grid;
   grid-template-columns: 1fr;
@@ -47,6 +52,8 @@ body {
 }
 #detailedArtistDialog {
   display: grid;
+  position: relative;
+  left: -100%;
 }
 #detailedArtistDialog button {
   width: min-content;
