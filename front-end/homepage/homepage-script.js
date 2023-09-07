@@ -154,11 +154,11 @@ function imageClicked(artist) {
     <h2>${artist.name}</h2>
     <p>${artist.shortDescription}</p>  
     <ul>
-      <li>${artist.birthdate}</li>
-      <li>${artist.activeSince}</li>
-      <li>${showGenres(artist.genres)}</li>
-      <li>${artist.labels}</li>
-      <li>${artist.website}</li>
+      <li>Født: ${artist.birthdate}</li>
+      <li>Aktiv Siden: ${artist.activeSince}</li>
+      <li>Genrer: ${showGenres(artist.genres)}</li>
+      <li>Pladeselskaber: ${artist.labels}</li>
+      <li>Hjemmeside: ${artist.website}</li>
     </ul>
   `
   );
