@@ -38,14 +38,21 @@ function displayArtists(artists) {
       /* html */ `
         <div class="artists-grid-item">
             <img src=${artist.image}>
-            <p>Favorit: ${artist.isFavorite}</p>
-            <p id = "name">${artist.name}</p>
-            <p id = "genres">${artist.genres}</p>
+            <h2 id = "name">${artist.name}</h2>
+            <h3 id = "genres">${showGenres(artist.genres)}</h3>
             <button id="update-btn">Redigér</button>
             <button id="delete-btn">Slet</button>
         </div>
   `
     );
+    function showGenres(genres) {
+      let genresString = "";
+      for (let i = 0; i < genres.length; i++) {
+        if (i > 0) genresString += ` - ${genres[i]}`;
+        else genresString += `${genres[i]}`;
+      }
+      return genresString;
+    }
     document
       .querySelector("#artists-grid .artists-grid-item:last-child #update-btn")
       .addEventListener("click", () => {
@@ -161,8 +168,6 @@ async function makeFilterCheckboxes() {
   const genres = await getGenresFromArtists();
   for (let i = 0; i < genres.length; i++) {
     const genresHtml = /* html */ `
-    
-    
     <div id="checkboxes">
     <label for="${genres[i].toLowerCase()}">${genres[i]}</label>
       <input 
@@ -195,6 +200,7 @@ async function makeFilterCheckboxes() {
   }
 }
 async function filterArtistsByGenre() {
+  console.log("Filtering artists by genre");
   const artists = await getArtists();
   const selected = [];
   const inputs = document
