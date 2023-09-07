@@ -7,19 +7,26 @@
     <title>Musik Kunstnere</title>
   </head>
   <body>
-    <h1>Musik Kunstnere</h1>
-
-    <div id="menu">
-      <button id="favorites-btn">Favoritter</button>
-      <button id="create-btn">Tilføj Kunstner</button>
-      <label for="sort-select">Sortér</label>
-      <select name="" id="sort-select"></select>
-      <form id="filter-form">
-        <h3>Filtrér Genre</h3>
-        
-      </form>
+    <header>
+      <h1>Musik Kunstnere</h1>
+    </header>
+    
+    <div id="filter">
+      <h3>Filtrér Genrer:</h3>
+      <form id="filter-form"></form>
     </div>
-
+    <div id="menu">
+      <button id="create-btn">Tilføj Kunstner</button>
+      <label for="sort-select" id="sort-artists">Sortér efter: </label>
+      <select id="sort-select">
+        <option>Sidst Tilføjet</option>
+        <option value="az">Navn (A - Z)</option>
+        <option value="za">Navn (Z - A)</option>
+      </select>
+      <label for="favorites-btn">Vis Favoritter: </label>
+      <input type="checkbox" id="favorites-btn" name="favorites-btn">
+    </div>
+    
     <div id="grid-container">
       <div id="artists-grid"></div>
     </div>

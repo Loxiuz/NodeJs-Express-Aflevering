@@ -1,6 +1,21 @@
 body {
   margin: 0;
-  background-color: grey;
+  background-color: beige;
+}
+h1 {
+  text-align: center;
+  font-size: 3em;
+}
+header {
+  background-color: tan;
+  height: 8em;
+  position: relative;
+  bottom: 1.4em;
+  padding-top: 2em;
+  box-shadow: 0px 0px 50px #201e20;
+}
+.hidden {
+  visibility: hidden;
 }
 /* ------ Artists grid and items ------ */
 #grid-container {
@@ -11,6 +26,7 @@ body {
   grid-template-columns: 1fr;
   grid-gap: 10px;
   width: 100%;
+  padding-top: 3em;
 }
 @media (min-width: 630px) {
   #artists-grid {
@@ -27,13 +43,30 @@ body {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
+@media (min-width: 1500px) {
+  #artists-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+@media (min-width: 1800px) {
+  #artists-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+}
 .artists-grid-item {
   display: grid;
   grid-template-columns: 1fr;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.273);
-  border: 8px solid green;
+  box-shadow: 0px 0px 15px #201e20;
+  border: 8px solid #201e20;
   border-radius: 10px;
   margin: 10px;
+  padding: 0.5em;
+  background-color: tan;
+}
+.artists-grid-item:hover {
+  animation-name: hoverScaleUp;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 }
 .artists-grid-item img {
   width: 100%;
@@ -53,4 +86,32 @@ body {
   width: min-content;
   position: relative;
   left: 98%;
+}
+/* ------  ------ */
+#menu {
+  position: relative;
+  top: 1em;
+  text-align: center;
+  background-color: tan;
+  height: 3em;
+  padding-top: 1.5em;
+  box-shadow: 0px 0px 20px #201e20;
+}
+#filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: right;
+  width: 100%;
+}
+#filter-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 1em;
+}
+/* ------ Animations ------ */
+@keyframes hoverScaleUp {
+  100% {
+    transform: scale(1.1);
+  }
 }
