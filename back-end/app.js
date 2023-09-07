@@ -34,39 +34,43 @@ app.post("/artists", async (req, res) => {
   await fs.writeFile("data/artists.json", JSON.stringify(artists));
   res.json(artists);
 });
-
+/* Creates a PUT route for artists with "/artists/:id" as endpoint
+      to access the given artist*/
 app.put("/artists/:id", async (req, res) => {
   const artistId = Number(req.params.id);
   console.log(artistId);
-
+  //Gets current data from json file
   const data = await fs.readFile("data/artists.json");
   const artists = JSON.parse(data);
-
+  //Finds the given artists with id
   let artistToUpdate = artists.find((artist) => artist.id === artistId);
   console.log("Updating: " + artistToUpdate.name);
-
+  //Compares the body of the request and the artist to update
   for (const prop in req.body) {
+    //Check of the artist to update has the properties of the request body
     if (req.body.hasOwnProperty(prop) && artistToUpdate.hasOwnProperty(prop)) {
+      //Updates the property of the artist
       artistToUpdate[prop] = req.body[prop];
     }
   }
-
+  //Writes the updated artists array back the json file
   await fs.writeFile("data/artists.json", JSON.stringify(artists));
 
   res.send(artists);
 });
-
+/* Creates a DELETE route artists with "/artists/:id" as endpoint
+   to access the given artist */
 app.delete("/artists/:id", async (req, res) => {
   const artistId = Number(req.params.id);
   console.log(artistId);
-
+  //Gets the current data from the json file
   const data = await fs.readFile("data/artists.json");
   const artists = JSON.parse(data);
-
+  //Makes a new array with all the artist except for the one being deleted
   const newArtistsArr = artists.filter((artist) => {
-    return artist.id != artistId;
+    return artist.id != artistId; //Skips the artist being deleted
   });
-
+  //Writes new artists array without the deleted artist
   fs.writeFile("data/artists.json", JSON.stringify(newArtistsArr));
   res.json(newArtistsArr);
 });
