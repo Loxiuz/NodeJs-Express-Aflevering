@@ -20,15 +20,6 @@ header {
 h1 {
   text-align: center;
 }
-.hidden {
-  visibility: hidden;
-}
-h1 {
-  text-align: center;
-}
-.hidden {
-  visibility: hidden;
-}
 /* ------ Artists grid and items ------ */
 #grid-container {
   width: 100%;
