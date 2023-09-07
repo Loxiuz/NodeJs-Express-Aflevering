@@ -67,17 +67,30 @@ h1 {
   padding: 0.5em;
   background-color: tan;
 }
-.artists-grid-item:hover {
-  animation-name: hoverScaleUp;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-}
 .artists-grid-item img {
   border-radius: 10px;
   width: 100%;
   height: 20em;
   object-fit: cover;
   object-position: top;
+}
+.artists-grid-item button,
+#create-btn {
+  border-width: 1.5px;
+  border-color: #201e20;
+  border-radius: 6px;
+  background-color: beige;
+  box-shadow: 0px 0px 2px #201e20;
+}
+.artists-grid-item button:hover,
+.artists-grid-item img:hover,
+.artists-grid-item:hover,
+#no-btn:hover,
+#yes-btn:hover,
+#create-btn:hover {
+  animation-name: hoverScaleUp;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 }
 /* ------ Dialogs ------ */
 #dialog-container {
@@ -92,6 +105,7 @@ h1 {
   max-width: 40em;
   max-height: 60em;
   border-radius: 25px;
+  font-size: large;
 }
 #detailedArtistDialog img {
   max-width: 100%;
@@ -119,6 +133,27 @@ h1 {
 #createAndUpdateForm input {
   background-color: beige;
   border-radius: 8px;
+}
+#deleteDialog {
+  background-color: beige;
+  font-size: 30px;
+  text-align: center;
+  border-radius: 25px;
+  box-shadow: 0px 0px 50px #201e20;
+}
+#deleteDialog button {
+  background-color: beige;
+  font-size: 30px;
+  border-radius: 10px;
+  border-width: 5px;
+  border-color: #201e20;
+  width: 30%;
+}
+#deleteDialog #yes-btn {
+  background-color: rgb(28, 185, 30);
+}
+#deleteDialog #no-btn {
+  background-color: rgb(229, 101, 101);
 }
 /* ------ Filter ------ */
 
@@ -150,5 +185,6 @@ h1 {
 @keyframes hoverScaleUp {
   100% {
     transform: scale(1.1);
+    box-shadow: 0px 0px 15px #201e20;
   }
 }
