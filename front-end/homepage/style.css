@@ -92,7 +92,7 @@ h1 {
   position: relative;
   left: 98%;
 }
-/* ------  ------ */
+/* ------ Filter ------ */
 
 #filter {
   display: flex;
@@ -107,6 +107,7 @@ h1 {
   grid-template-columns: 1fr 1fr 1fr;
   padding: 1em;
 }
+/* ------ Menu ------ */
 #menu {
   position: relative;
   top: 1em;

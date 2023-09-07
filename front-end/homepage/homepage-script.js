@@ -11,28 +11,29 @@ import {
 window.addEventListener("load", start);
 
 function start() {
-  updateArtGrid();
-  makeFilterCheckboxes();
-  document
+  updateArtGrid(); // To show to latest version of the data
+  makeFilterCheckboxes(); //Generate the checkboxes for the filter
+  document //When "show favorites" is clicked
     .querySelector("#favorites-btn")
     .addEventListener("change", favoritesClicked);
-  document
+  document // When "Add Artist" is clicked
     .querySelector("#create-btn")
     .addEventListener("click", createArtistClicked);
-  document
+  document //When any filter category is clicked
     .querySelector("#filter-form")
     .addEventListener("change", filterArtistsByGenre);
-  document
+  document //When a value for sort is chosen
     .querySelector("#sort-select")
     .addEventListener("change", sortArtists);
 }
-
+/* Display a given artists array */
 function displayArtists(artists) {
   console.log("Displaying artists");
   console.log(artists);
-  document.querySelector("#artists-grid").innerHTML = "";
-
+  document.querySelector("#artists-grid").innerHTML = ""; //Clear html to avoid duplication
+  /* Display a given artist */
   function displayArtist(artist) {
+    //Inserts a given artist into the HTML
     document.querySelector("#artists-grid").insertAdjacentHTML(
       "beforeend",
       /* html */ `
@@ -45,14 +46,7 @@ function displayArtists(artists) {
         </div>
   `
     );
-    function showGenres(genres) {
-      let genresString = "";
-      for (let i = 0; i < genres.length; i++) {
-        if (i > 0) genresString += ` - ${genres[i]}`;
-        else genresString += `${genres[i]}`;
-      }
-      return genresString;
-    }
+    //Event listeners for the buttons on the artist
     document
       .querySelector("#artists-grid .artists-grid-item:last-child #update-btn")
       .addEventListener("click", () => {
@@ -68,6 +62,7 @@ function displayArtists(artists) {
       .addEventListener("click", () => {
         imageClicked(artist);
       });
+    //If the artist is already added to favorites
     if (artist.isFavorite === true) {
       document
         .querySelector("#artists-grid .artists-grid-item:last-child")
@@ -84,6 +79,7 @@ function displayArtists(artists) {
         .addEventListener("click", () => {
           setArtistFavorit(artist, false);
         });
+      //If the artist is not in favorites
     } else {
       document
         .querySelector("#artists-grid .artists-grid-item:last-child")
@@ -102,15 +98,16 @@ function displayArtists(artists) {
         });
     }
   }
-  artists.slice().reverse().forEach(displayArtist);
+  //Shows every artist in given artists array
+  artists.slice().reverse().forEach(displayArtist); //In reverse to set the latest artist added first
 }
-
+/* Updates the grid for artists */
 async function updateArtGrid() {
   console.log("Updated Artists Grid");
   const artists = await getArtists();
   displayArtists(artists);
 }
-
+/* When "show favorites" checkbox is clicked */
 async function favoritesClicked() {
   console.log("Showing favorites");
   document
@@ -118,17 +115,27 @@ async function favoritesClicked() {
     .removeEventListener("click", favoritesClicked);
 
   const checkbox = document.querySelector("#favorites-btn");
+  //If the checkbox is clicked - get artists who are favorite (where artist.isFavorite = true)
   if (checkbox.checked) {
     const artists = await getArtists();
     const favorites = artists.filter((artist) => {
       return artist.isFavorite === true;
     });
-    displayArtists(favorites);
+    displayArtists(favorites); //Display favorites
   } else {
-    updateArtGrid();
+    updateArtGrid(); //If the favorites is unchecked
   }
 }
-
+/* Converts the genres array to a single readable string */
+function showGenres(genres) {
+  let genresString = "";
+  for (let i = 0; i < genres.length; i++) {
+    if (i > 0) genresString += ` - ${genres[i]}`;
+    else genresString += `${genres[i]}`;
+  }
+  return genresString;
+}
+/* When the image for an artist is clicked */
 function imageClicked(artist) {
   console.log("Showing details");
   document
@@ -138,7 +145,7 @@ function imageClicked(artist) {
     });
 
   const dialog = document.querySelector("#detailedArtistDialog");
-  dialog.innerHTML = "";
+  dialog.innerHTML = ""; //Clear html to avoid duplication
   dialog.insertAdjacentHTML(
     "beforeend",
     /* html */ `
@@ -149,12 +156,13 @@ function imageClicked(artist) {
     <ul>
       <li>${artist.birthdate}</li>
       <li>${artist.activeSince}</li>
-      <li>${artist.genres}</li>
+      <li>${showGenres(artist.genres)}</li>
       <li>${artist.labels}</li>
       <li>${artist.website}</li>
     </ul>
   `
   );
+  //Show dialog
   dialog.classList.remove("hidden");
   dialog.showModal();
   document.querySelector("#close-details-btn").addEventListener("click", () => {
@@ -162,11 +170,12 @@ function imageClicked(artist) {
     dialog.close();
   });
 }
-
+/* Makes the checkboxes for the filter based on the categories from all artists */
 async function makeFilterCheckboxes() {
   console.log("Creation of filter checkboxes");
-  const genres = await getGenresFromArtists();
+  const genres = await getGenresFromArtists(); //Get all the different genres from artists
   for (let i = 0; i < genres.length; i++) {
+    //Cycles through the genres and shows them with html
     const genresHtml = /* html */ `
     <div id="checkboxes">
     <label for="${genres[i].toLowerCase()}">${genres[i]}</label>
@@ -179,40 +188,48 @@ async function makeFilterCheckboxes() {
     </div>
     
     `;
-    document
+    document //Inserted in the html element
       .querySelector("#filter-form")
       .insertAdjacentHTML("beforeend", genresHtml);
   }
-
+  /* Returns an array with all the different genres from the artists */
   async function getGenresFromArtists() {
     console.log("Get different genres from artists");
     const artists = await getArtists();
 
-    let differentGenres = [];
+    let differentGenres = []; //Array with different genres
+    //Cycles through the artists
     for (let i = 0; i < artists.length; i++) {
+      //Cycles through the genre for that artist[i]
       for (let q = 0; q < artists[i].genres.length; q++) {
+        //Checks if the array already contains that genre(.genres[q]) to avoid duplication
         if (!differentGenres.includes(artists[i].genres[q])) {
-          differentGenres.push(artists[i].genres[q]);
+          differentGenres.push(artists[i].genres[q]); //Push genre
         }
       }
     }
     return differentGenres;
   }
 }
+/* Filters the artists based on checked checkboxes */
 async function filterArtistsByGenre() {
   console.log("Filtering artists by genre");
   const artists = await getArtists();
-  const selected = [];
-  const inputs = document
+  const inputs = document //Array with all the checkboxes
     .querySelector("#filter-form")
     .querySelectorAll("input[type='checkbox']");
+  const selected = []; //Array for the selected checkboxes
 
   for (const input of inputs) {
+    //Cycle through all checkboxes
     if (input.checked) {
-      selected.push(input.value);
+      //Check if checkbox is check
+      selected.push(input.value); //Push to selected
     }
   }
+
   if (selected.length === 0) {
+    //If there is none selected
     updateArtGrid();
   } else {
     const filteredArtists = artists.filter((artist) => {

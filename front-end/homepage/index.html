@@ -10,12 +10,12 @@
     <header>
       <h1>Musik Kunstnere</h1>
     </header>
-    
+    <!-- Filter -->
     <div id="filter">
       <h3>Filtrér Genrer:</h3>
       <form id="filter-form"></form>
     </div>
-    
+    <!-- Menu -->
     <div id="menu">
       <button id="create-btn">Tilføj Kunstner</button>
       <label for="sort-select" id="sort-artists">Sortér efter: </label>
@@ -27,11 +27,11 @@
       <label for="favorites-btn">Vis Favoritter: </label>
       <input type="checkbox" id="favorites-btn" name="favorites-btn">
     </div>
-
+    <!-- Main grid (artists)-->
     <div id="grid-container">
       <div id="artists-grid"></div>
     </div>
-
+    <!-- Dialogs -->
     <div id="dialog-container">
       <dialog id="createAndUpdateDialog">
         <form id="createAndUpdateForm">
@@ -59,6 +59,7 @@
       <dialog id="detailedArtistDialog" class="hidden"></dialog>
       <dialog id="deleteDialog"></dialog>
     </div>
+    <!-- Scripts -->
     <script src="homepage-script.js" type="module"></script>
     <script src="/front-end/crud.js" type="module"></script>
   </body>
