@@ -1,6 +1,7 @@
 body {
   margin: 0;
   background-color: beige;
+  color: #201e20;
 }
 h1 {
   text-align: center;
@@ -31,12 +32,12 @@ h1 {
   width: 100%;
   padding-top: 3em;
 }
-@media (min-width: 630px) {
+@media (min-width: 600px) {
   #artists-grid {
     grid-template-columns: 1fr 1fr;
   }
 }
-@media (min-width: 930px) {
+@media (min-width: 900px) {
   #artists-grid {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -91,26 +92,29 @@ h1 {
   left: 98%;
 }
 /* ------  ------ */
-#menu {
-  position: relative;
-  top: 1em;
-  text-align: center;
-  background-color: tan;
-  height: 3em;
-  padding-top: 1.5em;
-  box-shadow: 0px 0px 20px #201e20;
-}
+
 #filter {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: right;
   width: 100%;
+  font-size: larger;
 }
 #filter-form {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding: 1em;
+}
+#menu {
+  position: relative;
+  top: 1em;
+  text-align: center;
+  background-color: tan;
+  height: 2.5em;
+  padding-top: 1.5em;
+  box-shadow: 0px 0px 20px #201e20;
+  font-size: larger;
 }
 /* ------ Animations ------ */
 @keyframes hoverScaleUp {
