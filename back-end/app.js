@@ -11,26 +11,26 @@ app.listen(port, () => {
   console.log(`App running on http://localhost:${port}`);
 });
 
-//Homepage
 app.get("/", (req, res) => {
-  res.send("This is the homepage");
+  res.send("This is the homepage of the server");
 });
-
+/* Creates the GET route for artists with "/artists" as endpoint*/
 app.get("/artists", async (req, res) => {
+  //Gets the data from a json-file
   const data = await fs.readFile("data/artists.json");
   const json = JSON.parse(data);
   res.json(json);
 });
-
+/* Creates a POST route for artists with "/artists" as endpoint*/
 app.post("/artists", async (req, res) => {
-  const newArtistBody = req.body;
-  newArtistBody.id = new Date().getTime();
-
+  const newArtistBody = req.body; //Gets the request body
+  newArtistBody.id = new Date().getTime(); //Generates a random id
+  //Gets current data from the json file
   const data = await fs.readFile("data/artists.json");
   const artists = JSON.parse(data);
-  artists.push(newArtistBody);
+  artists.push(newArtistBody); //Pushes the new object to the array
   console.log(newArtistBody);
-
+  //Writes the array with the new object back to the json file
   await fs.writeFile("data/artists.json", JSON.stringify(artists));
   res.json(artists);
 });
