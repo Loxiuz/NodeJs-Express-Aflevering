@@ -177,7 +177,7 @@ async function makeFilterCheckboxes() {
   for (let i = 0; i < genres.length; i++) {
     //Cycles through the genres and shows them with html
     const genresHtml = /* html */ `
-    <div id="checkboxes">
+    <div class="checkboxes">
     <label for="${genres[i].toLowerCase()}">${genres[i]}</label>
       <input 
         type="checkbox" 
