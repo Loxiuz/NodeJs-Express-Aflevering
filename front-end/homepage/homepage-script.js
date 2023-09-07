@@ -232,13 +232,15 @@ async function filterArtistsByGenre() {
     //If there is none selected
     updateArtGrid();
   } else {
+    //Array with the filtered artists
     const filteredArtists = artists.filter((artist) => {
+      //Returns true if an artist has one of the selected genres
       return selected.some((genre) => artist.genres.includes(genre));
     });
-    displayArtists(filteredArtists);
+    displayArtists(filteredArtists); //Display the filtered artists
   }
 }
-
+/* Sorts the artists based on the chosen value from the dropdown menu */
 async function sortArtists() {
   const dropdown = document.querySelector("#sort-select");
   const selected = dropdown.value;
@@ -248,21 +250,23 @@ async function sortArtists() {
   switch (selected) {
     case "az":
       sorted = artists.sort((a, b) => {
+        //Alphabetical
         if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
         return 1;
       });
       break;
     case "za":
       sorted = artists.sort((a, b) => {
+        //Reverse alphabetical
         if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
         return 1;
       });
       break;
     default:
-      displayArtists(artists);
+      displayArtists(artists); //If nothing is chosen (default)
       break;
   }
   if (sorted) {
-    displayArtists(sorted);
+    displayArtists(sorted); //Display sorted artists array
   }
 }
