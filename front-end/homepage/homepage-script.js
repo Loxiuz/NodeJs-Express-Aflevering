@@ -148,8 +148,10 @@ function imageClicked(artist) {
     </ul>
   `
   );
+  dialog.classList.remove("hidden");
   dialog.showModal();
   document.querySelector("#close-details-btn").addEventListener("click", () => {
+    dialog.classList.add("hidden");
     dialog.close();
   });
 }
@@ -159,14 +161,18 @@ async function makeFilterCheckboxes() {
   const genres = await getGenresFromArtists();
   for (let i = 0; i < genres.length; i++) {
     const genresHtml = /* html */ `
-    <input 
-      type="checkbox" 
-      name="genre" 
-      id="${genres[i].toLowerCase()}"
-      value="${genres[i]}"
-    />
+    
+    
+    <div id="checkboxes">
     <label for="${genres[i].toLowerCase()}">${genres[i]}</label>
-    <br/>
+      <input 
+        type="checkbox" 
+        name="genre" 
+        id="${genres[i].toLowerCase()}"
+        value="${genres[i]}"
+      />
+    </div>
+    
     `;
     document
       .querySelector("#filter-form")
