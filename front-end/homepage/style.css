@@ -87,7 +87,8 @@ h1 {
 .artists-grid-item:hover,
 #no-btn:hover,
 #yes-btn:hover,
-#create-btn:hover {
+#create-btn:hover,
+#createAndUpdateForm input:hover {
   animation-name: hoverScaleUp;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
