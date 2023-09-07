@@ -1,4 +1,4 @@
-## Installation
+# Installation
 
 Start app fra terminal:
 
@@ -9,3 +9,5 @@ Start app fra terminal:
 Få vist front-end:
 
 1.  Åben filen index.html fra "\frontend\homepage" med Live Server
+
+###### Lavet af Malte Bjørklund
