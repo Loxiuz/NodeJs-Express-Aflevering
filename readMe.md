@@ -3,8 +3,8 @@
 Start app fra terminal:
 
 1.  Få vist terminalen
-2.  Navigér til filen "app.js" i mappen "\backend" med "cd .\backend\".
-3.  Start appen med ""node app.js""
+2.  Navigér til filen "app.js" i mappen "\backend" med kommando "cd .\backend\".
+3.  Start appen med kommando ""node app.js""
 
 Få vist front-end:
 
